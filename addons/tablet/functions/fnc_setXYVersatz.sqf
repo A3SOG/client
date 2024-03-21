@@ -1,0 +1,2 @@
+missionNamespace setVariable [format ["%1xPlus", str(_this select 0)], (_this select 1) * GUI_GRID_W];
+missionNamespace setVariable [format ["%1yPlus", str(_this select 0)], (_this select 2) * GUI_GRID_H];

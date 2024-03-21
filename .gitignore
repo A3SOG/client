@@ -1,0 +1,10 @@
+*.7z
+*.pbo
+.hemtt/missions
+.hemttout
+.vs
+hemtt
+hemtt.exe
+venv
+*.biprivatekey
+releases

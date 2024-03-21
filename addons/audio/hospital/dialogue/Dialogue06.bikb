@@ -1,0 +1,20 @@
+class Sentences {
+	class Part06A {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\dialogue\sounds\SOGHospitalNPC06A.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+	class Part06B {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\dialogue\sounds\SOGHospitalNPC06B.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+};
+
+class Arguments {};
+class Special {};
+startWithVocal[] = { hour };
+startWithConsonant[] = { europe, university };

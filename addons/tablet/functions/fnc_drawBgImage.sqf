@@ -1,0 +1,1 @@
+_bgCtrl = ["RscPicture", "\z\sog_client\addons\os\ui\data\win11.paa", GUI_LEFT, GUI_TOP, GUI_WIDTH, GUI_HEIGHT] call sog_client_tablet_fnc_addCtrl;

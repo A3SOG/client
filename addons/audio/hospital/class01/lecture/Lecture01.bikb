@@ -1,0 +1,90 @@
+class Sentences {	
+	class Opening {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LectureOpening.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+	
+	class PartA {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartA.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartB {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartB.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartC {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartC.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartD {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartD.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartE {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartE.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartF {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartF.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartG {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartG.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartH {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartH.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class PartI {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartI.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+	class PartJ {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LecturePartJ.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+
+    class Finish {
+		text = "";
+		speech[] = {"\sog\sog_audio_f\hospital\class01\lecture\sounds\SOGMedicalClass01LectureFinish.ogg"};
+		class Arguments {};
+		actor = "dummy";
+	};
+};
+
+class Arguments {};
+class Special {};
+startWithVocal[] = { hour };
+startWithConsonant[] = { europe, university };
