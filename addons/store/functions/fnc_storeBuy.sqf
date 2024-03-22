@@ -29,7 +29,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 0]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
 
 		hintSilent "You have bought the item!";
@@ -46,7 +45,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 2] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 2]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 2]]; };
 
 		hintSilent "You have bought the magazine!";
@@ -63,7 +61,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 1] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 1]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 1]]; };
 
 		hintSilent "You have bought the weapon!";
@@ -80,7 +77,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 0]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
 
 		hintSilent "You have bought the uniform!";
@@ -97,7 +93,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 0]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
 
 		hintSilent "You have bought the vest!";
@@ -114,7 +109,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 0]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
 
 		hintSilent "You have bought the headgear!";
@@ -131,7 +125,6 @@ switch (selectedCategory) do {
 		player setVariable ["Locker", _locker, true];
 
 		[_class, 3] call sog_client_armory_fnc_addItemArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["armory", [_class, 3]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 3]]; };
 
 		hintSilent "You have bought the backpack!";
@@ -148,7 +141,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 3] call sog_client_armory_fnc_addVehArmory;
-		// ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 3]]] call py3_fnc_callExtension;
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 3]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -165,7 +157,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 1] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 1]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 1]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -182,7 +173,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 2] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 2]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 2]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -199,7 +189,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 4] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 4]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 4]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -216,7 +205,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 5] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 5]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 5]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -233,7 +221,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 3] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 3]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 3]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -250,7 +237,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 0] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 0]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 0]]; };
 
 		hintSilent "You have bought the vehicle!";
@@ -267,7 +253,6 @@ switch (selectedCategory) do {
 		player setVariable ["Garage", _garage, true];
 
 		[_class, 0] call sog_client_armory_fnc_addVehArmory;
-		// if (_pdbMode == 2) then { ["store_playerData.store_playerDataStoreUnlocks", ["garage", [_class, 0]]] call py3_fnc_callExtension; };
 		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 0]]; };
 
 		hintSilent "You have bought the vehicle!";

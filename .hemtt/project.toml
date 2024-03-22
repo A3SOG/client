@@ -43,7 +43,6 @@ parameters = [
 include = [
     "sog_client_version.json",
     "*.paa",
-    "ArmaSOGClient/ArmaSOGClient/bin/x64/Release/**/*.dll",
 ]
 
 [version]

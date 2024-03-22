@@ -64,16 +64,3 @@ SOG_StaticUnlocks = [];
 {
 	SOG_StaticUnlocks append [getText (configFile >> "CfgVehicles" >> _x >> "model"), [configFile >> "CfgVehicles" >> _x]];
 } forEach _static;
-
-switch (SOG_PDB_Mode) do {
-	case 0: {
-		profileNamespace setVariable ["SOG_Garage_Unlocks", SOG_Garage_Unlocks];
-	};
-	case 1: {
-		_key = getPlayerUID player;
-		[_key + "_Garage_Unlocks", str SOG_Garage_Unlocks] remoteExec ["db_fnc_save", 2, false];
-	};
-	default {
-		profileNamespace setVariable ["SOG_Garage_Unlocks", SOG_Garage_Unlocks];
-	};
-};

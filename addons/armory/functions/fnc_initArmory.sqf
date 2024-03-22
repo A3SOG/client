@@ -35,9 +35,6 @@ switch (SOG_PDB_Mode) do {
 		[_key + "_Garage_Unlocks", player, _fnc2, false] remoteExec ["db_fnc_load", 2, false];
 	};
 	case 2: {
-		// SOG_Armory_Unlocks = ["store_playerData.fetchUnlocks", ["armory"]] call py3_fnc_callExtension;
-		// SOG_Garage_Unlocks = ["store_playerData.fetchUnlocks", ["garage"]] call py3_fnc_callExtension;
-
 		_handler = 0 spawn {
 			SOG_Armory_Unlocks = "ArmaSOGClient" callExtension ["fetch_unlocks", ["armory"]];
 			sleep 0.1;
