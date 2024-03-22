@@ -19,7 +19,7 @@ if (_index > - 1) then {
 			_key = getPlayerUID player;
 			[_key + "_Armory_Unlocks", str SOG_Armory_Unlocks] remoteExec ["db_fnc_save", 2, false];
 		};
-		case: 2: {
+		case 2: {
 			"ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, _type]];
 		};
 		default {
