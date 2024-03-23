@@ -32,23 +32,23 @@ _ctrl01 ctrlAddEventHandler ["ButtonClick", {
 
 _ctrl02 = (findDisplay 202300) displayCtrl 202414;
 _ctrl02 ctrlRemoveAllEventHandlers "ButtonClick";
-_ctrl02 ctrlAddEventHandler ["ButtonClick", {
-	_reciever = ctrlText 2023004;
-	[_reciever] spawn sog_client_phone_fnc_showDialpad;
+// _ctrl02 ctrlAddEventHandler ["ButtonClick", {
+// 	_reciever = ctrlText 2023004;
+// 	[_reciever] spawn sog_client_phone_fnc_showDialpad;
 
-	ctrlShow [202223, false];
-	ctrlShow [202224, false];
-	ctrlShow [2023001, false];
-	ctrlShow [2023002, false];
-	ctrlShow [2023003, false];
-	ctrlShow [2023004, false];
-	ctrlShow [2023005, false];
-	ctrlShow [2023006, false];
-	ctrlShow [202307, false];
-	ctrlShow [202308, false];
-	ctrlShow [202414, false];
-	ctrlShow [202415, false];
-}];
+// 	ctrlShow [202223, false];
+// 	ctrlShow [202224, false];
+// 	ctrlShow [2023001, false];
+// 	ctrlShow [2023002, false];
+// 	ctrlShow [2023003, false];
+// 	ctrlShow [2023004, false];
+// 	ctrlShow [2023005, false];
+// 	ctrlShow [2023006, false];
+// 	ctrlShow [202307, false];
+// 	ctrlShow [202308, false];
+// 	ctrlShow [202414, false];
+// 	ctrlShow [202415, false];
+// }];
 
 _ctrl03 = (findDisplay 202300) displayCtrl 202415;
 _ctrl03 ctrlRemoveAllEventHandlers "ButtonClick";

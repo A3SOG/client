@@ -7,7 +7,8 @@ _number = (_this select 0);
 	};
 } forEach SOG_Addressbook;
 
-hintSilent format ["You got a new message from %1", _number];
+// hintSilent format ["You got a new message from %1", _number];
+[format ["You got a new message from %1.", _number], "green", 3] call sog_client_misc_fnc_notify;
 
 playSound "SOG_newMsg";
 

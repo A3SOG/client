@@ -57,7 +57,8 @@ if (_isFTP == 1) then {
 		[_phoneNumber, [["Field Cmdr", _x]]] remoteExec ["sog_server_phone_fnc_addMsg", 2, false];
 	} forEach _messages;
 
-	["ScoreAdded", [format ["Welcome to the Team %1!", name _player], 500]] call BIS_fnc_showNotification;
+	// ["ScoreAdded", [format ["Welcome to the Team %1!", name _player], 500]] call BIS_fnc_showNotification;
+	[format ["Welcome to the Team %1.", name _player], "blue-grey", 5] call sog_client_misc_fnc_notify;
 
 	// hintSilent "Cash in your RP at any laptop by Access the Bank, Sign In, and then Submit Time. Do this before leaving the game session!";
 
@@ -87,5 +88,6 @@ if (_isFTP == 1) then {
 		["B_Quadbike_01_F", 0] call sog_client_armory_fnc_addVehArmory;
 	};
 } else {
-	titleText [format ["Welcome back %1. Your persistent locker, bank, cash and profile have been loaded.", name _player], "PLAIN DOWN"];
+	// titleText [format ["Welcome back %1. Your persistent locker, bank, cash and profile have been loaded.", name _player], "PLAIN DOWN"];
+	[format ["Welcome back %1. Your persistent locker, bank, cash and profile have been loaded.", name _player, 5], "blue-grey"] call sog_client_misc_fnc_notify;
 };

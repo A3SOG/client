@@ -495,7 +495,7 @@ class RscPhone {
 			colorShadow[] = {0,0,0,0};
 			colorText[] = {0,0,0,0};
 			tooltip = "Phone";
-			action = "[_this] spawn sog_client_phone_fnc_showDialpad;";
+			// action = "[_this] spawn sog_client_phone_fnc_showDialpad;";
 		};
 		class SOG_RscPhoneSafariBtn : RscButton {
 			idc = 202311;
