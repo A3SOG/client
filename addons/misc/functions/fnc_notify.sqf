@@ -1,13 +1,22 @@
+#include "script_component.hpp"
+
 /*
- File: fn_notification_system.sqf
- Author: TanKode
- Author-URI: https://github.com/TanKode
- License: MIT
- Version: v1.1-dev
- Parameter:
- 0: Text <STRING> text to display in the notification
- 1: Type <STRING> type of this notification or the colorname or the color as array/object
- 2: Speed <INTEGER> time in seconds to show this notification
+	Author:
+	J. Schmidt
+
+	Description:
+	Creates a notification.
+
+	Arguments:
+	0: STRING - The text to display
+	1: STRING - The type or color of the notification
+	2: SCALAR - The speed of the notification
+
+	Example:
+	["NotificationText", "TypeOfNotification", 3] call sog_client_misc_fnc_notify;
+
+	Returns:
+	void
 */
 params [["_text", "", [""]], ["_type", "default", ["", [], {}]], ["_speed", 10, [10]]];
 
