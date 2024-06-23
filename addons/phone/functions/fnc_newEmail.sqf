@@ -14,4 +14,5 @@ playSound "SOG_newMsg";
 
 uiSleep 1;
 
-[player getVariable ["SOG_Email", "unk"], player, "sog_client_phone_fnc_addEmail", true] remoteExec ["db_fnc_listload", 2, false];
+[player getVariable ["SOG_Email", "unknown@spearnet.mil"], "sog_client_phone_fnc_addEmail"] call dragonfly_db_fnc_listLoad;
+// [player getVariable ["SOG_Email", "unknown@spearnet.mil"], player, "sog_client_phone_fnc_addEmail", true] remoteExec ["db_fnc_listload", 2, false];

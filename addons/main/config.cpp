@@ -16,7 +16,7 @@ class CfgPatches {
         clientSaveLoopTime = 60;
         holsterKey = 35;
         interactionKey = 15;
-        phoneKey = 70;
+        phoneKey = 25;
     };
 };
 

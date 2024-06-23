@@ -14,4 +14,5 @@ playSound "SOG_newMsg";
 
 uiSleep 1;
 
-[player getVariable ["SOG_Phone_Number", "unk"], player, "sog_client_phone_fnc_addMsg", true] remoteExec ["db_fnc_listload", 2, false];
+[player getVariable ["SOG_Phone_Number", "unknown"], "sog_client_phone_fnc_addMsg"] call dragonfly_db_fnc_listLoad;
+// [player getVariable ["SOG_Phone_Number", "unknown"], player, "sog_client_phone_fnc_addMsg", true] remoteExec ["db_fnc_listload", 2, false];

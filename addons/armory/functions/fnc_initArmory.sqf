@@ -26,13 +26,17 @@ switch (SOG_PDB_Mode) do {
 		} forEach SOG_Garage_Unlocks;
 	};
 	case 1: {
-		_key = getPlayerUID player;
+		_handler = 0 spawn {
+			// _key = getPlayerUID player;
 
-		_fnc1 = "sog_client_armory_fnc_loadArmoryUnlocks";
-		[_key + "_Armory_Unlocks", player, _fnc1, false] remoteExec ["db_fnc_load", 2, false];
+			// _fnc1 = "sog_client_armory_fnc_loadArmoryUnlocks";
+			// [_key + "_Armory_Unlocks", player, _fnc1, false] remoteExec ["db_fnc_load", 2, false];
+			["armory", "sog_client_armory_fnc_loadArmoryUnlocks"] call dragonfly_db_fnc_hashGet;
 
-		_fnc2 = "sog_client_armory_fnc_loadGarageUnlocks";
-		[_key + "_Garage_Unlocks", player, _fnc2, false] remoteExec ["db_fnc_load", 2, false];
+			// _fnc2 = "sog_client_armory_fnc_loadGarageUnlocks";
+			// [_key + "_Garage_Unlocks", player, _fnc2, false] remoteExec ["db_fnc_load", 2, false];
+			["garage", "sog_client_armory_fnc_loadGarageUnlocks"] call dragonfly_db_fnc_hashGet;
+		};
 	};
 	case 2: {
 		_handler = 0 spawn {

@@ -1,7 +1,9 @@
 class CfgVehicles {
     class Man;
     class CAManBase: Man {
-        class ACE_SelfActions {
+		class Eventhandlers;
+		class ACE_Actions: ACE_Actions {};
+		class ACE_MainActions: ACE_MainActions {
 			class giveCash {
 				displayName = "Give Cash";
 				condition = "isPlayer cursorObject && (player distance cursorObject) <= 5";
@@ -87,5 +89,70 @@ class CfgVehicles {
 				icon = "";
 			};
 		};
+		class ACE_SelfActions: ACE_SelfActions {
+            class getacF110 {
+                displayName = "Getac F110";
+                condition = "('SOG_Tablet' in (items player))";
+                // icon = "";
+                class getacOpen {
+                    displayName = "Open";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "[] execVM 'CoalaOs\CoalaOsMain.sqf'";
+                };
+            };
+            class phone {
+                displayName = "Phone";
+                condition = "('SOG_Phone' in (items player))";
+                // icon = "";
+                class phoneOpen {
+                    displayName = "Open";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "[] spawn sog_client_phone_fnc_openPhone";
+                };
+            };
+            class idBadge {
+                displayName = "ID Badge";
+                condition = "{['SOG_Dress_ID_Card', _x] call BIS_fnc_inString} count (items player) > 0";
+                // icon = "";
+                class idbadgeGarrison {
+                    displayName = "Garrison";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "['Garrison'] spawn sog_card_fnc_setBadge";
+                };
+                class idBadgeMiddle {
+                    displayName = "Middle";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "['Middle'] spawn sog_card_fnc_setBadge";
+                };
+                class idBadgePocket01 {
+                    displayName = "Pocket 1";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "['Pocket01'] spawn sog_card_fnc_setBadge";
+                };
+                class idBadgePocket02 {
+                    displayName = "Pocket 2";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "['Pocket02'] spawn sog_card_fnc_setBadge";
+                };
+                class idBadgePocket03 {
+                    displayName = "Pocket 3";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "['Pocket03'] spawn sog_card_fnc_setBadge";
+                };
+                class idBadgeRemove {
+                    displayName = "Remove";
+                    condition = "true";
+                    exceptions[] = {};
+                    statement = "removeBackpack player;";
+                };
+            };
+        };
 	};
 };

@@ -12,8 +12,9 @@ if (_index > - 1) then {
 			profileNamespace setVariable ["SOG_Garage_Unlocks", SOG_Garage_Unlocks];
 		};
 		case 1: {
-			_key = getPlayerUID player;
-			[_key + "_Garage_Unlocks", str SOG_Garage_Unlocks] remoteExec ["db_fnc_save", 2, false];
+			// _key = getPlayerUID player;
+			// [_key + "_Garage_Unlocks", str SOG_Garage_Unlocks] remoteExec ["db_fnc_save", 2, false];
+			["garage", SOG_Garage_Unlocks] call dragonfly_db_fnc_hashSet;
 		};
 		case 2: {
 			"ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, _type]];
