@@ -2,6 +2,7 @@ PREP(attack);
 PREP(defuse);
 PREP(destroy);
 PREP(handler);
+PREP(heartBeat);
 PREP(hostage);
 PREP(hvt);
 PREP(makeHostage);

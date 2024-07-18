@@ -6,3 +6,4 @@ PREP(loadArmoryUnlocks);
 PREP(loadGarageUnlocks);
 PREP(openArmory);
 PREP(openGarage);
+PREP(saveArmoryUnlocks);

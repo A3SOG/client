@@ -41,7 +41,7 @@ SOG_DeleteMsg = _myDialog displayAddEventHandler ["KeyDown", {
 		if (_selectedIndex >= 0) then {
 			_selectedText = _ctrl01 lbText _selectedIndex;
 			hint format ["Deleted text message from: %1", _selectedText];
-			[] call sog_client_phone_fnc_delMsg;
+			[] spawn sog_client_phone_fnc_delMsg;
 		};
 	};
 }];
@@ -73,7 +73,7 @@ private _messages = SOG_Phone_MSG;
 {
     _sender = _x select 0;
     {
-        if (_sender == _x select 1) then {
+        if (_sender == (_x select 1)) then {
           _sender = _x select 0;
         };
     } forEach SOG_Addressbook;

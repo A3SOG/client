@@ -10,7 +10,7 @@ if (isNil "_defaultTheme") then {
 
 uiSleep 0.1;
 
-_theme = profileNamespace getVariable "SOG_PhoneTheme";
+_theme = profileNamespace getVariable ["SOG_PhoneTheme", ["bg_dark01","\@sog_mod\userconfig\backgrounds\bgdark_01.paa"]];
 _themeBackground = _theme select 1;
 
 _dayTime = [(date select 3), (date select 4)] call sog_client_phone_fnc_dateToHhMm;

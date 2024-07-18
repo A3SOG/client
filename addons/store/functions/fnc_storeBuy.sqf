@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-private ["_check", "_class", "_data", "_dataArray", "_index", "_locker", "_pdbMode", "_price"];
+private ["_amount", "_amountPrice", "_bank", "_cash", "_class", "_data", "_dataArray", "_funds", "_garage", "_index", "_locker", "_pdbMode", "_price"];
 
 _pdbMode = "PDB_MODE" call BIS_fnc_getParamValue;
 
@@ -15,247 +15,143 @@ _amountPrice = _price * _amount;
 
 _bank = player getVariable ["Cash_Bank", 0];
 _cash = player getVariable ["Cash", 0];
+_garage = player getVariable ["Garage", []];
+_locker = player getVariable ["Locker", []];
+_funds = companyFunds;
 
-switch (selectedCategory) do {
-	case "storeItems": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
+private _fnc_buyVehicle = {
+	params [["_categoryType", "", [""]], ["_vehicleType", 0, [0]], ["_classname", "", [""]], ["_vehiclePrice", 0, [0]]];
+	if (currentPaymentMethod == "Company Funds" && !((getPlayerUID player) in companyGenerals)) exitWith { hintSilent "You are not authorized to use Company Funds!" };
+	if (currentPaymentMethod == "Company Funds" && (getPlayerUID player) in companyGenerals) then {
+		if (_vehiclePrice > _funds) exitWith { hintSilent "You do not have enough funds!" };
 
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
+		_garage pushBack [_categoryType, _classname];
+		player setVariable ["Garage", _garage, true];
 
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeItems", _class];
+		["deduct", _vehiclePrice] remoteExecCall ["sog_server_money_fnc_handleFunds", 2];
+
+		[_classname, _vehicleType] call sog_client_armory_fnc_addVehArmory;
+		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _classname, _vehicleType]]; };
+
+		hintSilent "You have bought the vehicle!";
+	} else {
+		if (_vehiclePrice > _cash) exitWith { hintSilent "You do not have enough money!" };
+
+		_garage pushBack [_categoryType, _classname];
+		player setVariable ["Garage", _garage, true];
+
+		["deduct", "Cash", _vehiclePrice, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
+
+		[_classname, _vehicleType] call sog_client_armory_fnc_addVehArmory;
+		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _classname, _vehicleType]]; };
+
+		hintSilent "You have bought the vehicle!";
+	};
+};
+
+private _fnc_buyItem = {
+	params [["_categoryType", "", [""]], ["_itemType", 0, [0]], ["_classname", "", [""]], ["_itemPrice", 0, [0]]];
+	if (currentPaymentMethod == "Company Funds" && !((getPlayerUID player) in companyGenerals)) exitWith { hintSilent "You are not authorized to use Company Funds!" };
+	if (currentPaymentMethod == "Company Funds" && (getPlayerUID player) in companyGenerals) then {
+		if (_itemPrice > _funds) exitWith { hintSilent "You do not have enough funds!" };
+		
+		_locker pushBack [_categoryType, _classname];
+
 		player setVariable ["Locker", _locker, true];
 
-		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
+		["deduct", _itemPrice] remoteExecCall ["sog_server_money_fnc_handleFunds", 2];
+
+		[_classname, _itemType] call sog_client_armory_fnc_addItemArmory;
+		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _classname, _itemType]]; };
+
+		hintSilent "You have bought the item!";
+	} else {
+		if (_itemPrice > _cash) exitWith { hintSilent "You do not have enough money!" };
+
+		_locker pushBack [_categoryType, _classname];
+		player setVariable ["Locker", _locker, true];
+
+		["deduct", "Cash", _itemPrice, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
+
+		[_classname, _itemType] call sog_client_armory_fnc_addItemArmory;
+		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _classname, _itemType]]; };
 
 		hintSilent "You have bought the item!";
 	};
+};
+
+switch (selectedCategory) do {
+	case "storeItems": {
+		["storeItems", 0, _class, _price] call _fnc_buyItem;
+	};
 	case "storeMagazines": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
+		if (currentPaymentMethod == "Company Funds" && !((getPlayerUID player) in companyGenerals)) exitWith { hintSilent "You are not authorized to use Company Funds!" };
+		if (currentPaymentMethod == "Company Funds" && (getPlayerUID player) in companyGenerals) then {
+			if (_price > _funds) exitWith { hintSilent "You do not have enough funds!" };
+
+			["deduct", _price] remoteExecCall ["sog_server_money_fnc_handleFunds", 2];
+
+			_locker = player getVariable ["Locker", []];
+			_locker pushBack ["storeMagazines", [_class, getNumber (configfile >> "CfgMagazines" >> _class >> "count"), getNumber (configfile >> "CfgMagazines" >> _class >> "count")]];
+			player setVariable ["Locker", _locker, true];
+
+			[_class, 2] call sog_client_armory_fnc_addItemArmory;
+			if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 2]]; };
+
+			hintSilent "You have bought the Item!";
+		} else {
+			if (_price > _cash) exitWith { hintSilent "You do not have enough money!" };
+
+			["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
+
+			_locker = player getVariable ["Locker", []];
+			_locker pushBack ["storeMagazines", [_class, getNumber (configfile >> "CfgMagazines" >> _class >> "count"), getNumber (configfile >> "CfgMagazines" >> _class >> "count")]];
+			player setVariable ["Locker", _locker, true];
+
+			[_class, 2] call sog_client_armory_fnc_addItemArmory;
+			if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 2]]; };
+
+			hintSilent "You have bought the Item!";
 		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeMagazines", [_class, getNumber (configfile >> "CfgMagazines" >> _class >> "count"), getNumber (configfile >> "CfgMagazines" >> _class >> "count")]];
-		player setVariable ["Locker", _locker, true];
-
-		[_class, 2] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 2]]; };
-
-		hintSilent "You have bought the magazine!";
 	};
 	case "storeWeapons": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeWeapons", _class];
-		player setVariable ["Locker", _locker, true];
-
-		[_class, 1] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 1]]; };
-
-		hintSilent "You have bought the weapon!";
+		["storeWeapons", 1, _class, _price] call _fnc_buyItem;
 	};
 	case "storeUniforms": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeUniforms", _class];
-		player setVariable ["Locker", _locker, true];
-
-		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
-
-		hintSilent "You have bought the uniform!";
+		["storeUniforms", 0, _class, _price] call _fnc_buyItem;
 	};
 	case "storeVests": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeVests", _class];
-		player setVariable ["Locker", _locker, true];
-
-		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
-
-		hintSilent "You have bought the vest!";
+		["storeVests", 0, _class, _price] call _fnc_buyItem;
 	};
 	case "storeHeadgear": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeHeadgear", _class];
-		player setVariable ["Locker", _locker, true];
-
-		[_class, 0] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 0]]; };
-
-		hintSilent "You have bought the headgear!";
+		["storeHeadgear", 0, _class, _price] call _fnc_buyItem;
 	};
 	case "storeBackpacks": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_locker = player getVariable ["Locker", []];
-		_locker pushBack ["storeBackpacks", _class];
-		player setVariable ["Locker", _locker, true];
-
-		[_class, 3] call sog_client_armory_fnc_addItemArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, 3]]; };
-
-		hintSilent "You have bought the backpack!";
+		["storeBackpacks", 3, _class, _price] call _fnc_buyItem;	
 	};
 	case "storeAircraft": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageAircraft", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 3] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 3]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageAircraft", 3, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeArmored": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageArmored", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 1] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 1]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageArmored", 1, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeChopper": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageChopper", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 2] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 2]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageChopper", 2, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeMarine": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		[_price] remoteExecCall ["SOG_fnc_removeCash", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageMarine", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 4] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 4]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageMarine", 4, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeStatic": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageStatic", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 5] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 5]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageStatic", 5, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeUAV": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageUAV", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 3] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 3]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageUAV", 3, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeUGV": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageUGV", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 0] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 0]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageUGV", 0, _class, _price] call _fnc_buyVehicle;
 	};
 	case "storeWheeled": {
-		if (_price > _cash) exitWith {
-			hintSilent "You do not have enough money!"
-		};
-
-		["deduct", "Cash", _price, player] remoteExecCall ["sog_server_money_fnc_handleMoney", 2];
-
-		_garage = player getVariable ["Garage", []];
-		_garage pushBack ["garageWheeled", _class];
-		player setVariable ["Garage", _garage, true];
-
-		[_class, 0] call sog_client_armory_fnc_addVehArmory;
-		if (_pdbMode == 2) then { "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, 0]]; };
-
-		hintSilent "You have bought the vehicle!";
+		["garageWheeled", 0, _class, _price] call _fnc_buyVehicle;
 	};
 	default {
 		hint "Error >> Item doesn't have a defined type";

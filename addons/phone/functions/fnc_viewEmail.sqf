@@ -41,7 +41,7 @@ SOG_DeleteEmail = _myDialog displayAddEventHandler ["KeyDown", {
 		if (_selectedIndex >= 0) then {
 			_selectedText = _ctrl01 lbText _selectedIndex;
 			hint format ["Deleted email from: %1", _selectedText];
-			[] call sog_client_phone_fnc_delEmail;
+			[] spawn sog_client_phone_fnc_delEmail;
 		};
 	};
 }];
@@ -73,7 +73,7 @@ private _emails = SOG_Email;
 {
     _from = _x select 0;
     {
-        if (_from == _x select 1) then {
+        if (_from == (_x select 1)) then {
           _from = _x select 0;
         };
     } forEach SOG_Addressbook;

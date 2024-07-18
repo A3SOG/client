@@ -3,12 +3,12 @@
 params [["_vehicles", []]];
 private ["_cars", "_armor", "_helis", "_planes", "_naval", "_static"];
 
-_cars = SOG_Garage_Unlocks select 0;
-_armor = SOG_Garage_Unlocks select 1;
-_helis = SOG_Garage_Unlocks select 2;
-_planes = SOG_Garage_Unlocks select 3;
-_naval = SOG_Garage_Unlocks select 4;
-_static = SOG_Garage_Unlocks select 5;
+_cars = GVAR(garageUnlocks) select 0;
+_armor = GVAR(garageUnlocks) select 1;
+_helis = GVAR(garageUnlocks) select 2;
+_planes = GVAR(garageUnlocks) select 3;
+_naval = GVAR(garageUnlocks) select 4;
+_static = GVAR(garageUnlocks) select 5;
 
 {
 	switch true do {

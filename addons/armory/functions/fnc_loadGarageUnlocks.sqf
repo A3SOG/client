@@ -1,11 +1,14 @@
 #include "script_component.hpp"
 
-if (_this isEqualTo []) then {
-	SOG_Garage_Unlocks = [[],[],[],[],[],[]];
+_data = _this;
+diag_log text format ["SOG_Client: 'sog_client_armory_fnc_loadGarageUnlocks' Data '%1'", _data];
+
+if (_data isEqualTo [""]) then {
+	GVAR(garageUnlocks) = [[],[],[],[],[],[]];
 } else {
-	SOG_Garage_Unlocks = _this;
+	GVAR(garageUnlocks) = _data select 0;
 };
 
 {
 	[_x] call sog_client_armory_fnc_addVirtualVehs;
-} forEach SOG_Garage_Unlocks;
+} forEach GVAR(garageUnlocks);

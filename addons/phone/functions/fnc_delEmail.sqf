@@ -18,9 +18,11 @@ ctrlShow [202319, false];
 ctrlEnable [202319, false];
 
 // [player getVariable ["SOG_Email", "unknown@spearnet.mil"], lbCurSel _ctrl01] remoteExec ["db_fnc_listrem", 2, false];
-[player getVariable ["SOG_Email", "unknown@spearnet.mil"], lbCurSel _ctrl01] call dragonfly_db_fnc_listRemove;
+// ["listrem", player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", lbCurSel _ctrl01, [], "", "null", false] spawn dragonfly_db_fnc_addTask;
+["listrem", player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", lbCurSel _ctrl01, [], "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
 
 uiSleep 1;
 
 // [player getVariable ["SOG_Email", "unknown@spearnet.mil"], player, "sog_client_phone_fnc_addEmail", true] remoteExec ["db_fnc_listload", 2, false];
-[player getVariable ["SOG_Email", "unknown@spearnet.mil"], "sog_client_phone_fnc_addEmail"] call dragonfly_db_fnc_listLoad;
+// ["listrng", player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addEmail", "null", true] spawn dragonfly_db_fnc_addTask;
+["listrng", player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addEmail", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];

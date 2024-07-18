@@ -1,12 +1,13 @@
 #include "script_component.hpp"
 
 currentMod = "RHS";
-selectedCategory = "storeWeapons";
+currentPaymentMethod = "Personal";
 currentProductList = [];
 focusedProductName = "";
 focusedProductClass = "";
 focusedProdcutPrice = "";
-payMethod = "Personal";
+selectedCategory = "storeWeapons";
+selectedPaymentMethod = "Personal";
 
 B_initialBudget = paramsArray select 0;
 deliveryTime = paramsArray select 1;
@@ -22,9 +23,10 @@ if (isNil "B_totalCost") then {
 };
 
 publicVariable "currentMod";
-publicVariable "selectedCategory";
+publicVariable "currentPaymentMethod";
 publicVariable "currentProductList";
-publicVariable "focusedProductName";
 publicVariable "focusedProductClass";
+publicVariable "focusedProductName";
 publicVariable "focusedProductPrice";
-publicVariable "payMethod";
+publicVariable "selectedCategory";
+publicVariable "selectedPaymentMethod";

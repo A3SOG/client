@@ -11,6 +11,6 @@ ADDON = true;
 GVAR(allHostages) = [];
 GVAR(allHVTs) = [];
 GVAR(allIEDs) = [];
-GVAR(allObjects) = [];
+GVAR(allEntities) = [];
 GVAR(allShooters) = [];
 GVAR(allTargets) = [];

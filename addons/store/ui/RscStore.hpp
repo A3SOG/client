@@ -93,6 +93,15 @@ class RscStore {
             w = "0.1125 * safezoneW";
             h = "0.0275 * safezoneH";
         };
+        class RscStorePaymentMethodLB: RscCombo {
+            idc = 2023006;
+            onLBSelChanged = "_this spawn sog_client_store_fnc_selectPayment;";
+            text = "SELECT PAYMENT METHOD";
+            x = "0.6125 * safezoneW + safezoneX";
+            y = "0.3975 * safezoneH + safezoneY";
+            w = "0.1125 * safezoneW";
+            h = "0.0275 * safezoneH";
+        };
         class RscStoreSearchInput: RscEdit {
             idc = 2100;
             colorText[] = {0.1,0.1,0.1,1};

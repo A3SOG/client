@@ -6,7 +6,7 @@
  * 
  * Arguments:
  * 0: ID of the task <STRING>
- * 1: Amount of objects destroyed to fail the task <NUMBER>
+ * 1: Amount of entities destroyed to fail the task <NUMBER>
  * 2: Amount of ieds defused to complete the task <NUMBER>
  * 3: Should the mission end (MissionSuccess) if the task is successful <BOOL> (default: false)
  * 4: Should the mission end (MissionFailed) if the task is failed <BOOL> (default: false)
@@ -31,29 +31,29 @@ private _result = 0;
 // Get the IED(s) assigned to taskID
 private _ieds = sog_client_contract_allIEDs select { (_x getVariable ["assignedTask", ""]) == _taskID };
 
-// Get the object(s) assigned to taskID
-private _objects = sog_client_contract_allObjects select { (_x getVariable ["assignedTask", ""]) == _taskID };
+// Get the entitie(s) assigned to taskID
+private _entities = sog_client_contract_allEntities select { (_x getVariable ["assignedTask", ""]) == _taskID };
 
 // Mission Initialization.
-// Mission Watchdog checks for example Defused IEDs, Destroyed objects
+// Mission Watchdog checks for example Defused IEDs, Destroyed entities
 waitUntil {
 	sleep 1; // Use sleep on server side!
 
-	// Check if objects are killed
-	_objectsAlive = ({ !alive _x } count _objects);
-	if (_objectsAlive >= _limitFail) then { _result = 1; };
+	// Check if entities are killed
+	_entitiesAlive = ({ !alive _x } count _entities);
+	if (_entitiesAlive >= _limitFail) then { _result = 1; };
 
 	// Trigger Conditions
-	(_result == 1) OR ((sog_client_contract_defusedCount >= _limitSuccess) && (_objectsAlive < _limitFail))
+	(_result == 1) OR ((sog_client_contract_defusedCount >= _limitSuccess) && (_entitiesAlive < _limitFail))
 };
 
-// Mission Watchdog checks for example Defused IEDs, destroyed objects
+// Mission Watchdog checks for example Defused IEDs, destroyed entities
 if (_result == 1) then {
 	// Mission Failed
-	// Clean-up IEDs and Objects
+	// Clean-up IEDs and entities
 
 	{ deleteVehicle _x } forEach _ieds;
-	{ deleteVehicle _x } forEach _objects;
+	{ deleteVehicle _x } forEach _entities;
 
 	// Do stuff after the Mission is failed
 	// Like trigger next mission step via Mission Handler, punishment or so on
@@ -71,10 +71,10 @@ if (_result == 1) then {
 	{ [_x, _ratingFail] remoteExec ["addRating", -2] } forEach allPlayers;
 } else {
 	// Mission Complete
-	// Clean-up IEDs and Objects
+	// Clean-up IEDs and entities
 
 	{ deleteVehicle _x } forEach _ieds;
-	{ deleteVehicle _x } forEach _objects;
+	{ deleteVehicle _x } forEach _entities;
 
 	// Do stuff after the Mission is completed
 	// Like trigger next mission step via Mission Handler, rewards or so on

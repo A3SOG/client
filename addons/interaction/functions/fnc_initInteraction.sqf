@@ -52,7 +52,7 @@ if (SOG_Team_Coord == 1) then {
 			["!(isNil {
 				cursorObject getVariable 'isGarage'
 			})", "(player distance cursorObject) <= 5 && (getPlayerUID player) in companyGenerals"],
-			["Open Garage", "[cursorObject] spawn sog_client_garage_fnc_openGarage"]
+			["Open Company Garage", "[cursorObject] spawn sog_client_garage_fnc_openGarage"]
 		]
 	];
 } else {

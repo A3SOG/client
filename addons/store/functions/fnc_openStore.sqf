@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 params ["_ct"];
-private ["_array", "_category", "_catListIndex", "_ctrl01", "_ctrl02", "_index", "_modListIndex", "_myDialog", "_title"];
+private ["_array", "_category", "_catListIndex", "_ctrl01", "_ctrl02", "_index", "_modListIndex", "_myDialog", "_paymentMethodsListIndex", "_title"];
 
 disableSerialization;
 createDialog "RscStore";
@@ -9,33 +9,40 @@ createDialog "RscStore";
 _myDialog = findDisplay 202302;
 _ctrl01 = _myDialog displayCtrl 2023004;
 _ctrl02 = _myDialog displayCtrl 2023005;
+_ctrl03 = _myDialog displayCtrl 2023006;
 _array = _ct getVariable "isStore";
 
 storeCategories = _array select 0;
 storeModset = _array select 1;
-storeName = _array select 2;
-storeBackpacks = _array select 3;
-storeGoggles = _array select 4;
-storeHeadgear = _array select 5;
-storeItems = _array select 6;
-storeMagazines = _array select 7;
-storeUniforms = _array select 8;
-storeVests = _array select 9;
-storeWeapons = _array select 10;
-storeAircraft = _array select 11;
-storeArmored = _array select 12;
-storeChopper = _array select 13;
-storeMarine = _array select 14;
-storeStatic = _array select 15;
-storeUAV = _array select 16;
-storeUGV = _array select 17;
-storeWheeled = _array select 18;
-storeRestrictedCategories = _array select 19;
+storePaymentMethods = _array select 2;
+storeName = _array select 3;
+storeBackpacks = _array select 4;
+storeGoggles = _array select 5;
+storeHeadgear = _array select 6;
+storeItems = _array select 7;
+storeMagazines = _array select 8;
+storeUniforms = _array select 9;
+storeVests = _array select 10;
+storeWeapons = _array select 11;
+storeAircraft = _array select 12;
+storeArmored = _array select 13;
+storeChopper = _array select 14;
+storeMarine = _array select 15;
+storeStatic = _array select 16;
+storeUAV = _array select 17;
+storeUGV = _array select 18;
+storeWheeled = _array select 19;
+storeRestrictedCategories = _array select 20;
 
 // ctrlSetText [2023000, storeName];
 
 if ((getPlayerUID player) in companyGenerals) then {
 	storeCategories insert [-1, storeRestrictedCategories, true];
+
+	{
+		_paymentMethodsListIndex = _ctrl03 lbAdd _x;
+	} forEach storePaymentMethods;
+	_ctrl03 lbSetCurSel 0;
 };
 
 {

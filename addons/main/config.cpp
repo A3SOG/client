@@ -13,7 +13,7 @@ class CfgPatches {
         VERSION_CONFIG;
 
         // List of key codes: https://community.bistudio.com/wiki/ListOfKeyCodes
-        clientSaveLoopTime = 60;
+        clientSaveLoopTime = 900;
         holsterKey = 35;
         interactionKey = 15;
         phoneKey = 25;

@@ -17,10 +17,10 @@
  * Public: Yes
  */
 
-params [["_object", objNull], ["_taskID", ""]];
+params [["_entity", nil, [objNull, 0, [], sideUnknown, grpnull, ""]], ["_taskID", "", [""]]];
 
 // Check if item is defined
-// if (isNull _object) exitWith {
+// if (isNull _entity) exitWith {
 //     [COMPONENT_NAME, "ERROR", "Item is not found", true] call sog_server_main_fnc_log
 // };
 
@@ -30,16 +30,16 @@ params [["_object", objNull], ["_taskID", ""]];
 // };
 
 // Assign object to taskID
-// SETVAR(_object, GVAR(assignedTask), _taskID);
-_object setVariable ["assignedTask", _taskID];
+// SETVAR(_entity, GVAR(assignedTask), _taskID);
+_entity setVariable ["assignedTask", _taskID];
 
 // Add object to object array
-// private _index = GVAR(allObjs) pushBackUnique _object;
-private _index = sog_client_contract_allObjects pushBackUnique _object;
+// private _index = GVAR(allEntities) pushBackUnique _entity;
+private _index = sog_client_contract_allEntities pushBackUnique _entity;
 
 // Log
-// [COMPONENT_NAME, "DEBUG", format ["Item (%1) is registered as an object. Object array: %2", _object, str GVAR(allObjects)]] call sog_server_main_fnc_log;
+// [COMPONENT_NAME, "DEBUG", format ["Item (%1) is registered as an object. Object array: %2", _entity, str GVAR(allEntities)]] call sog_server_main_fnc_log;
 
 // if (_index == -1) then {
-//     [COMPONENT_NAME, "WARNING", format ["Item (%1) is already an object", _object], true] call sog_server_main_fnc_log;
+//     [COMPONENT_NAME, "WARNING", format ["Item (%1) is already an object", _entity], true] call sog_server_main_fnc_log;
 // };
