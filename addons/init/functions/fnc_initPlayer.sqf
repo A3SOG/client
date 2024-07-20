@@ -29,7 +29,9 @@ removeBackpack player;
 removeGoggles player;
 removeHeadgear player;
 
-waitUntil { value_serverDone && value_armoryDone };
+_armoryDone = player getVariable ["value_armoryDone", false];
+
+waitUntil { value_serverDone && _armoryDone };
 
 cutText ["Loading In...", "BLACK", 1];
 value_loadDone = false;
