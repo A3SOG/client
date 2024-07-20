@@ -29,6 +29,7 @@ switch (SOG_PDB_Mode) do {
 		} forEach GVAR(garageUnlocks);
 
 		value_armoryDone = true;
+        publicVariable "value_armoryDone";
 	};
 	case 1: {
 		_handler = 0 spawn {
@@ -49,6 +50,7 @@ switch (SOG_PDB_Mode) do {
 
 			uiSleep 1;
 			value_armoryDone = true;
+            publicVariable "value_armoryDone";
 		};
 	};
 	case 2: {
@@ -73,6 +75,7 @@ switch (SOG_PDB_Mode) do {
 			} forEach GVAR(garageUnlocks);
 
 			value_armoryDone = true;
+            publicVariable "value_armoryDone";
 		};
 	};
 	default {
@@ -94,5 +97,6 @@ switch (SOG_PDB_Mode) do {
 		} forEach GVAR(garageUnlocks);
 
 		value_armoryDone = true;
+        publicVariable "value_armoryDone";
 	};
 };
