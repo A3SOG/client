@@ -45,4 +45,5 @@ if (vehicle player == player) then {
 
 // ["hsetBulk", "", "", -1, _data, "", "null", false] spawn dragonfly_db_fnc_addTask;
 ["hsetidbulk", "", "", -1, _data, "", netId player, false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
+// [[netId player, _data], {["hsetidbulk", "", "", -1, _this select 1, "", _this select 0, false] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
 _data

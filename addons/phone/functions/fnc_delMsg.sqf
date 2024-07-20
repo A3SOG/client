@@ -20,9 +20,11 @@ ctrlEnable [202319, false];
 // [player getVariable ["SOG_Phone_Number", "unknown"], lbCurSel _ctrl01] remoteExec ["db_fnc_listrem", 2, false];
 // ["listrem", player getVariable ["SOG_Phone_Number", "unknown"], "", lbCurSel _ctrl01, [], "", "null", false] spawn dragonfly_db_fnc_addTask;
 ["listrem", player getVariable ["SOG_Phone_Number", "unknown"], "", lbCurSel _ctrl01, [], "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
+// [[player getVariable ["SOG_Phone_Number", "unknown"], lbCurSel _ctrl01], {["listrem", _this select 0, "", _this select 1, [], "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
 
 uiSleep 1;
 
 // [player getVariable ["SOG_Phone_Number", "unknown"], player, "sog_client_phone_fnc_addMsg", true] remoteExec ["db_fnc_listload", 2, false];
 // ["listrng", player getVariable ["SOG_Phone_Number", "unknown"], "", -1, [], "sog_client_phone_fnc_addMsg", "null", true] spawn dragonfly_db_fnc_addTask;
 ["listrng", player getVariable ["SOG_Phone_Number", "unknown"], "", -1, [], "sog_client_phone_fnc_addMsg", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
+// [[netId player, player getVariable ["SOG_Phone_Number", "unknown"]], {["listrng", _this select 1, "", -1, [], "sog_client_phone_fnc_addMsg", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];

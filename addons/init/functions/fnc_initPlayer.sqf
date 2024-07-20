@@ -17,9 +17,9 @@
 	Init Player:
 */
 
-waitUntil { !isNull player };
-waitUntil { player == player };
-waitUntil { alive player };
+// waitUntil { !isNull player };
+// waitUntil { player == player };
+// waitUntil { alive player };
 
 removeAllWeapons player;
 removeAllAssignedItems player;
@@ -29,15 +29,16 @@ removeBackpack player;
 removeGoggles player;
 removeHeadgear player;
 
-waitUntil { value_serverDone && value_armoryDone };
+// waitUntil { value_serverDone && value_armoryDone };
 
 cutText ["Loading In...", "BLACK", 1];
 value_loadDone = false;
 
 // ["hgetall", "", "", -1, [], "sog_client_init_fnc_handlePlayerLoad", "null", true] spawn dragonfly_db_fnc_addTask;
 ["hgetallid", getPlayerUID player, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
+// [[netId player, getPlayerUID player], {["hgetallid", _this select 1, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
 
-waitUntil { value_loadDone };
+// waitUntil { value_loadDone };
 
 [] spawn sog_client_init_fnc_playerSaveLoop;
 
@@ -45,7 +46,7 @@ cutText ["", "PLAIN", 1];
 
 [] spawn sog_client_interaction_fnc_initInteraction;
 
-waitUntil { !(isNull (findDisplay 46)) };
+// waitUntil { !(isNull (findDisplay 46)) };
 (findDisplay 46) displayAddEventHandler ["KeyDown", {
 	switch (_this select 1) do {
 		// Interaction Interface (default key TAB)
@@ -56,18 +57,18 @@ waitUntil { !(isNull (findDisplay 46)) };
 		// Holster/Unholster (default key H)
 		case ((configFile >> "CfgPatches" >> "sog_client_main" >> "holsterKey") call BIS_fnc_getCfgData): {
 			if ((currentWeapon player) != "" && !(player getVariable ["SOG_HolsterWeapon", true])) then {
-                player action ["SwitchWeapon", player, player, 299];
-                player setVariable ["SOG_HolsterWeapon", true, true];
-            } else {
-                private _weapon = switch (true) do {
-                    case ((primaryWeapon player) != ""): { primaryWeapon player };
-                    case ((handgunWeapon player) != ""): { handgunWeapon player };
-                    case ((secondaryWeapon player) != ""): { secondaryWeapon player };
-                    default {""};
-                };
-                if (_weapon != "") then { player selectWeapon _weapon };
-                player setVariable ["SOG_HolsterWeapon", false, true];
-            };
+				player action ["SwitchWeapon", player, player, 299];
+				player setVariable ["SOG_HolsterWeapon", true, true];
+			} else {
+				private _weapon = switch (true) do {
+					case ((primaryWeapon player) != ""): { primaryWeapon player };
+					case ((handgunWeapon player) != ""): { handgunWeapon player };
+					case ((secondaryWeapon player) != ""): { secondaryWeapon player };
+					default {""};
+				};
+				if (_weapon != "") then { player selectWeapon _weapon };
+				player setVariable ["SOG_HolsterWeapon", false, true];
+			};
 			false;
 		};
 		// Open Phone (default key P)
