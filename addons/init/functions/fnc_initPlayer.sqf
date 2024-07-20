@@ -17,9 +17,9 @@
 	Init Player:
 */
 
-// waitUntil { !isNull player };
-// waitUntil { player == player };
-// waitUntil { alive player };
+waitUntil { !isNull player };
+waitUntil { player == player };
+waitUntil { alive player };
 
 removeAllWeapons player;
 removeAllAssignedItems player;
@@ -29,7 +29,7 @@ removeBackpack player;
 removeGoggles player;
 removeHeadgear player;
 
-// waitUntil { value_serverDone && value_armoryDone };
+waitUntil { value_serverDone && value_armoryDone };
 
 cutText ["Loading In...", "BLACK", 1];
 value_loadDone = false;
@@ -38,7 +38,7 @@ value_loadDone = false;
 ["hgetallid", getPlayerUID player, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
 // [[netId player, getPlayerUID player], {["hgetallid", _this select 1, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
 
-// waitUntil { value_loadDone };
+waitUntil { value_loadDone };
 
 [] spawn sog_client_init_fnc_playerSaveLoop;
 
@@ -46,7 +46,7 @@ cutText ["", "PLAIN", 1];
 
 [] spawn sog_client_interaction_fnc_initInteraction;
 
-// waitUntil { !(isNull (findDisplay 46)) };
+waitUntil { !(isNull (findDisplay 46)) };
 (findDisplay 46) displayAddEventHandler ["KeyDown", {
 	switch (_this select 1) do {
 		// Interaction Interface (default key TAB)
