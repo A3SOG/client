@@ -6,8 +6,7 @@ SOG_Armory_Box = "ReammoBox_F" createVehicleLocal [0, 0, -999];
 SOG_PDB_Mode = "PDB_MODE" call BIS_fnc_getParamValue;
 SOG_Armory_Type = "ARS_TYPE" call BIS_fnc_getParamValue;
 
-value_armoryDone = false;
-publicVariable "value_armoryDone";
+player setVariable ["value_armoryDone", false];
 
 switch (SOG_PDB_Mode) do {
 	case 0: {
@@ -28,8 +27,7 @@ switch (SOG_PDB_Mode) do {
 			[_x] call sog_client_armory_fnc_addVirtualVehs;
 		} forEach GVAR(garageUnlocks);
 
-		value_armoryDone = true;
-        publicVariable "value_armoryDone";
+		player setVariable ["value_armoryDone", true];
 	};
 	case 1: {
 		_handler = 0 spawn {
@@ -49,8 +47,7 @@ switch (SOG_PDB_Mode) do {
 			// [[netId player, getPlayerUID player], {["hgetid", _this select 1, "garage_unlocks", -1, [], "sog_client_armory_fnc_loadGarageUnlocks", _this select 0, false] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
 
 			uiSleep 1;
-			value_armoryDone = true;
-            publicVariable "value_armoryDone";
+			player setVariable ["value_armoryDone", true];
 		};
 	};
 	case 2: {
@@ -74,8 +71,7 @@ switch (SOG_PDB_Mode) do {
 				[_x] call sog_client_armory_fnc_addVirtualVehs;
 			} forEach GVAR(garageUnlocks);
 
-			value_armoryDone = true;
-            publicVariable "value_armoryDone";
+			player setVariable ["value_armoryDone", true];
 		};
 	};
 	default {
@@ -96,7 +92,6 @@ switch (SOG_PDB_Mode) do {
 			[_x] call sog_client_armory_fnc_addVirtualVehs;
 		} forEach GVAR(garageUnlocks);
 
-		value_armoryDone = true;
-        publicVariable "value_armoryDone";
+		player setVariable ["value_armoryDone", true];
 	};
 };
