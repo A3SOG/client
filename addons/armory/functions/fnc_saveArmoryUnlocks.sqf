@@ -27,11 +27,9 @@ switch (_unlockType) do {
             };
             case 1: {
                 // _key = getPlayerUID player;
-
                 // [_key + "_Armory_Unlocks", str ArsenalUnlocks] remoteExec ["db_fnc_save", 2, false];
                 // ["hset", "", "armory_unlocks", -1, GVAR(arsenalUnlocks), "", "null", false] spawn dragonfly_db_fnc_addTask;
                 ["hsetid", getPlayerUID player, "armory_unlocks", -1, GVAR(arsenalUnlocks), "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
-                // [[GVAR(arsenalUnlocks), getPlayerUID player], {["hsetid", _this select 1, "armory_unlocks", -1, _this select 0, "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
             };
             case 2: {
                 "ArmaSOGClient" callExtension ["save_unlock", ["armory", _class, _type]];
@@ -48,11 +46,9 @@ switch (_unlockType) do {
             };
             case 1: {
                 // _key = getPlayerUID player;
-
                 // [_key + "_Garage_Unlocks", str GarageUnlocks] remoteExec ["db_fnc_save", 2, false];
                 // ["hset", "", "garage_unlocks", -1, GVAR(garageUnlocks), "", "null", false] spawn dragonfly_db_fnc_addTask;
                 ["hsetid", getPlayerUID player, "garage_unlocks", -1, GVAR(garageUnlocks), "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
-                // [[GVAR(garageUnlocks), getPlayerUID player], {["hsetid", _this select 1, "garage_unlocks", -1, _this select 0, "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
             };
             case 2: {
                 "ArmaSOGClient" callExtension ["save_unlock", ["garage", _class, _type]];

@@ -29,24 +29,12 @@ removeBackpack player;
 removeGoggles player;
 removeHeadgear player;
 
-_armoryDone = player getVariable ["value_armoryDone", false];
-
-waitUntil { value_serverDone && _armoryDone };
-
 cutText ["Loading In...", "BLACK", 1];
-player setVariable ["value_loadDone", false];
 
 // ["hgetall", "", "", -1, [], "sog_client_init_fnc_handlePlayerLoad", "null", true] spawn dragonfly_db_fnc_addTask;
 ["hgetallid", getPlayerUID player, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
-// [[netId player, getPlayerUID player], {["hgetallid", _this select 1, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
-
-_loadDone = player getVariable ["value_loadDone", false];
-waitUntil { _loadDone };
 
 [] spawn sog_client_init_fnc_playerSaveLoop;
-
-cutText ["", "PLAIN", 1];
-
 [] spawn sog_client_interaction_fnc_initInteraction;
 
 waitUntil { !(isNull (findDisplay 46)) };

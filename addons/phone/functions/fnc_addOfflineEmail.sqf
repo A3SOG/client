@@ -7,4 +7,4 @@ if ((typeName _tmp) isEqualTo "SCALAR") exitWith {};
 
 SOG_Email = _this;
 
-["You got a new email.", "cyan", 3] call sog_client_misc_fnc_notify;
+["You got an email while away.", "cyan", 3] call sog_client_misc_fnc_notify;

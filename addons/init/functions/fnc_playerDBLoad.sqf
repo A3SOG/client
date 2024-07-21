@@ -18,5 +18,4 @@
 */
 
 // ["hgetall", "", "", -1, [], "sog_client_init_fnc_handlePlayerLoad", "null", true] spawn dragonfly_db_fnc_addTask;
-// ["hgetallid", getPlayerUID player, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
-[[netId player, getPlayerUID player], {["hgetallid", _this select 1, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
+["hgetallid", getPlayerUID player, "", -1, [], "sog_client_init_fnc_handlePlayerLoad", netId player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];

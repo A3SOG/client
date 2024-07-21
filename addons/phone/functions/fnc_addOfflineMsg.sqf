@@ -7,4 +7,4 @@ if ((typeName _tmp) isEqualTo "SCALAR") exitWith {};
 
 SOG_Phone_MSG = _this;
 
-["You got a new message.", "green", 3] call sog_client_misc_fnc_notify;
+["You got a message while away.", "green", 3] call sog_client_misc_fnc_notify;

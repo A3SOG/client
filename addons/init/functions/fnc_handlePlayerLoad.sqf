@@ -110,7 +110,9 @@ if (_data isEqualTo [""]) then {
     };
 
     if (needReload player == 1) then { reload player };
+
     player setVariable ["value_loadDone", true];
+    cutText ["", "PLAIN", 1];
 
     // [player getVariable ["SOG_Email", "unknown@spearnet.mil"], player, "sog_client_phone_fnc_addOfflineEmail", true] remoteExec ["db_fnc_listload", 2, false];
     // ["listrng", player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addOfflineEmail", "null", true] spawn dragonfly_db_fnc_addTask;

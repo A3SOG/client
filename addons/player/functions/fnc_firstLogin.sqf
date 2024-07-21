@@ -89,10 +89,12 @@ uiSleep 1;
 [] call sog_client_init_fnc_playerDBSave;
 _player setVariable ["value_loadDone", true];
 
-uiSleep 1;
-["listrng", _player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addEmail", netId _player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
-// [[netId _player, _player getVariable ["SOG_Email", "unknown@spearnet.mil"]], {["listrng", _this select 1, "", -1, [], "sog_client_phone_fnc_addEmail", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
+cutText ["", "PLAIN", 1];
 
 uiSleep 1;
+// ["listrng", _player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addEmail", netId _player, true] spawn dragonfly_db_fnc_addTask;
+["listrng", _player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addEmail", netId _player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
+
+uiSleep 1;
+// ["listrng", _player getVariable ["SOG_Phone_Number", "unknown"], "", -1, [], "sog_client_phone_fnc_addMsg", netId _player, true] spawn dragonfly_db_fnc_addTask;
 ["listrng", _player getVariable ["SOG_Phone_Number", "unknown"], "", -1, [], "sog_client_phone_fnc_addMsg", netId _player, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
-// [[netId _player, _player getVariable ["SOG_Phone_Number", "unknown"]], {["listrng", _this select 1, "", -1, [], "sog_client_phone_fnc_addMsg", _this select 0, true] remoteExec ["dragonfly_db_fnc_addTask", 2, false]}] remoteExec ["call", 2];
