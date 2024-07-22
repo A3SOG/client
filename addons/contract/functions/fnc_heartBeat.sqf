@@ -28,7 +28,7 @@ switch (_typeOf) do {
 
 		waitUntil {
 			sleep 1;
-			_nearPlayers = allPlayers inAreaArray [ASLtoAGL getPosASL _entity, 2, 2, 0, false, 2];
+			private _nearPlayers = allPlayers inAreaArray [ASLtoAGL getPosASL _entity, 2, 2, 0, false, 2];
 			count _nearPlayers > 0
 		};
 
@@ -43,7 +43,7 @@ switch (_typeOf) do {
     case "hvt": {
         waitUntil {
 			sleep 1;
-			_nearPlayers = allPlayers inAreaArray [ASLtoAGL getPosASL _entity, 2, 2, 0, false, 2];
+			private _nearPlayers = allPlayers inAreaArray [ASLtoAGL getPosASL _entity, 2, 2, 0, false, 2];
 			count _nearPlayers > 0
 		};
 

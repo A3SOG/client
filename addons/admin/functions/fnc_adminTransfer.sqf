@@ -1,25 +1,24 @@
 #include "script_component.hpp"
 
-params ["_condition"];
-private ["_amount", "_cash", "_count", "_data", "_dialog", "_list", "_target", "_targetValue"];
+params [["_condition", "", [""]]];
 
-_dialog = findDisplay 202303;
-_list = _dialog displayCtrl 2023001;
-_targetValue = lbCurSel _list;
-_data = _list lbData _targetValue;
-_amount = round (parseNumber (ctrlText 2023005));
+private _dialog = findDisplay 202303;
+private _list = _dialog displayCtrl 2023001;
+private _targetValue = lbCurSel _list;
+private _data = _list lbData _targetValue;
+private _amount = round (parseNumber (ctrlText 2023005));
 
 if ((isNil {_data})) exitWith { hint "You did not select a player!" };
 
 {
 	if (str (name (_x)) == str _data) then {
-		_target = _x;
+		private _target = _x;
 	};
-} count (playableUnits);
+} forEach playableUnits;
 
 switch (_condition) do {
   case ("advance"): {
-    _cash = _target getVariable ["Cash_Bank", 0];
+    private _cash = _target getVariable ["Cash_Bank", 0];
 
     if (_amount > companyFunds) exitWith { hintSilent "Not enough money in the company bank!" };
 
@@ -29,7 +28,7 @@ switch (_condition) do {
     ["deduct", _amount] remoteExecCall ["sog_server_money_fnc_handleFunds", 2];
   };
   case ("advanceAll"): {
-    _count = count (playableUnits);
+    private _count = count (playableUnits);
 
     if ((10000 * _count) > companyFunds) exitWith { hintSilent "Not enough money in the company bank!" };
 
@@ -41,7 +40,7 @@ switch (_condition) do {
     ["deduct", (10000 * _count)] remoteExecCall ["sog_server_money_fnc_handleFunds", 2];
   };
   case ("deduct"): {
-    _cash = _target getVariable ["Cash_Bank", 0];
+    private _cash = _target getVariable ["Cash_Bank", 0];
 
     if (_amount > _cash) exitWith { hintSilent "Not enough money in the player's bank!" };
 
@@ -53,14 +52,14 @@ switch (_condition) do {
   case ("payday"): {
     private ["_totalPayment", "_paymentToDo", "_payGrades", "_player", "_payGrade", "_payGradeIndex", "_payGradeBonus", "_bonus"];
 
-    _totalPayment = 0;
-    _paymentToDo = [];
-    _payGrades = (missionConfigFile >> "SOG_CfgPaygrades" >> "payGrades") call BIS_fnc_getCfgData;
+    private _totalPayment = 0;
+    private _paymentToDo = [];
+    private _payGrades = (missionConfigFile >> "SOG_CfgPaygrades" >> "payGrades") call BIS_fnc_getCfgData;
     // _payGrades = (configFile >> "sog_client_admin" >> "payGrades") call BIS_fnc_getCfgData;
 
     {
-      _player = _x;
-      _payGrade = _player getVariable ["PayGrade", "na"];
+      private _player = _x;
+      private _payGrade = _player getVariable ["PayGrade", "na"];
 
       {
         _x params ["_payGradeIndex", "_payGradeBonus"];

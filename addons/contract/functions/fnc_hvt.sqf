@@ -41,22 +41,22 @@ private _hvts = sog_client_contract_allHVTs select { (_x getVariable ["assignedT
 // Mission Initialization.
 if (!isNil "_time") then {
 	// Mission Watchdog checks for example Timeout, Captured/Killed HVTs
-	_startTime = floor(time);
+	private _startTime = floor(time);
 	waitUntil {
 		sleep 1; // Use sleep on server side!
 
 		// Check if hvts are killed
-		_hvtsAlive = ({ !alive _x } count _hvts);
+		private _hvtsAlive = ({ !alive _x } count _hvts);
 		if (_capture && (_hvtsAlive >= _limitFail)) then { _result = 1; };
 
 		// Check if hvts are in extraction zone
-		_hvtsInZone = ({ _x inArea _extZone } count _hvts);
+		private _hvtsInZone = ({ _x inArea _extZone } count _hvts);
 
 		// Check if hvts are captive
-		_hvtsCaptive = ({ captive _x } count _hvts);
+		private _hvtsCaptive = ({ captive _x } count _hvts);
 
 		// Timeout check
-		_currTime = floor(time);
+		private _currTime = floor(time);
 		if ((_hvtsCaptive < _limitSuccess) && (_currTime - _startTime >= _time)) then { _result = 1; };
 
 		// Trigger Conditions
@@ -68,14 +68,14 @@ if (!isNil "_time") then {
 		sleep 1; // Use sleep on server side!
 
 		// Check if hvts are killed
-		_hvtsAlive = ({ !alive _x } count _hvts);
+		private _hvtsAlive = ({ !alive _x } count _hvts);
 		if (_capture && (_hvtsAlive >= _limitFail)) then { _result = 1; };
 
 		// Check if hvts are in extraction zone
-		_hvtsInZone = ({ _x inArea _extZone } count _hvts);
+		private _hvtsInZone = ({ _x inArea _extZone } count _hvts);
 
 		// Check if hvts are captive
-		_hvtsCaptive = ({ captive _x } count _hvts);
+		private _hvtsCaptive = ({ captive _x } count _hvts);
 
 		// Trigger Conditions
 		(_result == 1) OR (_hvtsInZone >= _limitSuccess) OR (_hvtsAlive >= _limitSuccess)

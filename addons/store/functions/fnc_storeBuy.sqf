@@ -1,23 +1,21 @@
 #include "script_component.hpp"
 
-private ["_amount", "_amountPrice", "_bank", "_cash", "_class", "_data", "_dataArray", "_funds", "_garage", "_index", "_locker", "_pdbMode", "_price"];
+private _pdbMode = "PDB_MODE" call BIS_fnc_getParamValue;
 
-_pdbMode = "PDB_MODE" call BIS_fnc_getParamValue;
+private _index = lbCurSel 2023002;
+private _data = lbData [2023002, _index];
+private _dataArray = call compile _data;
+private _class = _dataArray select 0;
+private _price = _dataArray select 1;
 
-_index = lbCurSel 2023002;
-_data = lbData [2023002, _index];
-_dataArray = call compile _data;
-_class = _dataArray select 0;
-_price = _dataArray select 1;
+private _amount = 1;
+private _amountPrice = _price * _amount;
 
-_amount = 1;
-_amountPrice = _price * _amount;
-
-_bank = player getVariable ["Cash_Bank", 0];
-_cash = player getVariable ["Cash", 0];
-_garage = player getVariable ["Garage", []];
-_locker = player getVariable ["Locker", []];
-_funds = companyFunds;
+private _bank = player getVariable ["Cash_Bank", 0];
+private _cash = player getVariable ["Cash", 0];
+private _garage = player getVariable ["Garage", []];
+private _locker = player getVariable ["Locker", []];
+private _funds = companyFunds;
 
 private _fnc_buyVehicle = {
 	params [["_categoryType", "", [""]], ["_vehicleType", 0, [0]], ["_classname", "", [""]], ["_vehiclePrice", 0, [0]]];

@@ -1,24 +1,24 @@
 #include "script_component.hpp"
 
-private ["_category", "_class", "_clear", "_data", "_dialog", "_index", "_itemList", "_itemList2", "_locker", "_selectedItem"];
+private _dialog = findDisplay 202301;
+private _itemList = _dialog displayCtrl 1501;
+private _itemList2 = _dialog displayCtrl 1500;
+private _selectedItem = lbCurSel _itemList;
+private _data = call compile format["%1", _itemList lbData _selectedItem];
 
-_dialog = findDisplay 202301;
-_itemList = _dialog displayCtrl 1501;
-_itemList2 = _dialog displayCtrl 1500;
-_selectedItem = lbCurSel _itemList;
-_data = call compile format["%1", _itemList lbData _selectedItem];
 if ((isNil {
 	_data
 })) exitWith {
 	ctrlEnable [1601, true];
 };
-_category = _data select 0;
-_class = _data select 1;
-_clear = true;
+
+private _category = _data select 0;
+private _class = _data select 1;
+private _clear = true;
 
 switch (_category) do {
 	case "storeItems": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 		_locker pushBack [_category, _class];
 		player setVariable ["Locker", _locker, true];
 		if (_class == (currentMuzzle player)) then {
@@ -32,10 +32,10 @@ switch (_category) do {
 		playSound "FD_Finish_F";
 	};
 	case "storeMagazines": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 		_locker pushBack [_category, _class];
 		player setVariable ["Locker", _locker, true];
-		_temp = magazinesAmmoFull player;
+		private _temp = magazinesAmmoFull player;
 		switch (_class select 3) do {
 			case "Uniform": {
 				{
@@ -86,19 +86,19 @@ switch (_category) do {
 		playSound "FD_Finish_F";
 	};
 	case "storeWeapons": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 		_locker pushBack [_category, _class];
 		player setVariable ["Locker", _locker, true];
-		_temp = weaponsItems player;
+		private _temp = weaponsItems player;
 		{
-			_wepClass = _x select 0;
+			private _wepClass = _x select 0;
 			if (_wepClass == _class) then {
-				_att1 = _x select 1;
-				_att2 = _x select 2;
-				_att3 = _x select 3;
-				_mag = _x select 4;
-				_mag2 = _x select 5;
-				_att4 = _x select 6;
+				private _att1 = _x select 1;
+				private _att2 = _x select 2;
+				private _att3 = _x select 3;
+				private _mag = _x select 4;
+				private _mag2 = _x select 5;
+				private _att4 = _x select 6;
 				{
 					if (_x isNotEqualTo "") then {
 						_locker pushBack ["storeItems", _x];
@@ -118,7 +118,7 @@ switch (_category) do {
 		playSound "FD_Finish_F";
 	};
 	case "storeUniforms": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 
 		{
 			for "_i" from 1 to (_x select 1) do {
@@ -140,7 +140,7 @@ switch (_category) do {
 		playSound "FD_Finish_F";
 	};
 	case "storeVests": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 
 		{
 			for "_i" from 1 to (_x select 1) do {
@@ -163,14 +163,14 @@ switch (_category) do {
 		playSound "FD_Finish_F";
 	};
 	case "storeHeadgear": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 		_locker pushBack [_category, _class];
 		player setVariable ["Locker", _locker, true];
 		removeHeadgear player;
 		playSound "FD_Finish_F";
 	};
 	case "storeBackpacks": {
-		_locker = player getVariable ["Locker", []];
+		private _locker = player getVariable ["Locker", []];
 
 		{
 			for "_i" from 1 to (_x select 1) do {

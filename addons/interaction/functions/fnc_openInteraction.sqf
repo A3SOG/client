@@ -8,12 +8,12 @@ createDialog "RscInteraction";
 	ctrlShow [_x, false];
 } forEach SOG_InteractionButtons;
 
-_index1 = 0;
+private _index1 = 0;
 SOG_CurrentActionArray = [];
 
 {
-	_cArray = _x select 0;
-	_cTrue = true;
+	private _cArray = _x select 0;
+	private _cTrue = true;
 
 	for "_i" from 0 to ((count _cArray) - 1) step 1 do {
 		_c = call compile (_cArray select _i);
@@ -24,10 +24,10 @@ SOG_CurrentActionArray = [];
 
 	if (_cTrue) then {
 		if (_index1 < 9) then {
-			_idc = 1600 + _index1;
+			private _idc = 1600 + _index1;
 			_index1 = _index1 + 1;
-			_text = (_x select 1) select 0;
-			_action = (_x select 1) select 1;
+			private _text = (_x select 1) select 0;
+			private _action = (_x select 1) select 1;
 
 			ctrlShow [_idc, true];
 			ctrlSetText [_idc, _text];

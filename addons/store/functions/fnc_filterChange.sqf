@@ -1,11 +1,9 @@
 #include "script_component.hpp"
 
-private ["_control", "_index", "_selectedCategory", "_selectedCategoryTitle"];
-
-_control = _this select 0;
-_index = _this select 1;
-_selectedCategory = _control lbData _index;
-_selectedCategoryTitle = _control lbText _index;
+private _control = _this select 0;
+private _index = _this select 1;
+private _selectedCategory = _control lbData _index;
+private _selectedCategoryTitle = _control lbText _index;
 
 {
 	if (_index == _forEachIndex) then {

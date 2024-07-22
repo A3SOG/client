@@ -26,8 +26,6 @@ switch (_unlockType) do {
                 profileNamespace setVariable ["ArsenalUnlocks", GVAR(arsenalUnlocks)];
             };
             case 1: {
-                // _key = getPlayerUID player;
-                // [_key + "_Armory_Unlocks", str ArsenalUnlocks] remoteExec ["db_fnc_save", 2, false];
                 // ["hset", "", "armory_unlocks", -1, GVAR(arsenalUnlocks), "", "null", false] spawn dragonfly_db_fnc_addTask;
                 ["hsetid", getPlayerUID player, "armory_unlocks", -1, GVAR(arsenalUnlocks), "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
             };
@@ -45,8 +43,6 @@ switch (_unlockType) do {
                 profileNamespace setVariable ["GarageUnlocks", GVAR(garageUnlocks)];
             };
             case 1: {
-                // _key = getPlayerUID player;
-                // [_key + "_Garage_Unlocks", str GarageUnlocks] remoteExec ["db_fnc_save", 2, false];
                 // ["hset", "", "garage_unlocks", -1, GVAR(garageUnlocks), "", "null", false] spawn dragonfly_db_fnc_addTask;
                 ["hsetid", getPlayerUID player, "garage_unlocks", -1, GVAR(garageUnlocks), "", "null", false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
             };

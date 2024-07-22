@@ -1,18 +1,16 @@
 #include "script_component.hpp"
 
-private ["_category", "_class", "_clear", "_data", "_dialog", "_index", "_itemList", "_itemList2", "_locker", "_selectedItem"];
-
-_dialog = findDisplay 202301;
-_itemList = _dialog displayCtrl 1500;
-_itemList2 = _dialog displayCtrl 1501;
-_selectedItem = lbCurSel _itemList;
-_data = call compile format["%1", _itemList lbData _selectedItem];
+private _dialog = findDisplay 202301;
+private _itemList = _dialog displayCtrl 1500;
+private _itemList2 = _dialog displayCtrl 1501;
+private _selectedItem = lbCurSel _itemList;
+private _data = call compile format["%1", _itemList lbData _selectedItem];
 
 if ((isNil {_data})) exitWith { ctrlEnable [1600, true]; };
 
-_category = _data select 0;
-_class = _data select 1;
-_clear = true;
+private _category = _data select 0;
+private _class = _data select 1;
+private _clear = true;
 
 switch (_category) do {
 	case "storeItems": {
@@ -69,8 +67,9 @@ if (_clear) then {
 	lbClear _itemList2;
 	_itemList lbSetCurSel -1;
 	_itemList2 lbSetCurSel -1;
-	_locker = player getVariable ["Locker", []];
-	_index = _locker findIf { _x isEqualTo _data };
+
+	private _locker = player getVariable ["Locker", []];
+	private _index = _locker findIf { _x isEqualTo _data };
 	_locker deleteAt _index;
 	player setVariable ["Locker", _locker, true];
 

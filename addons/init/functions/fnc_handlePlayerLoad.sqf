@@ -28,7 +28,7 @@
  * Public: Yes
  */
 
-_data = _this;
+private _data = _this;
 
 if (_data isEqualTo [""]) then {
     2 cutText ["No Save Found!", "PLAIN DOWN", 1];
@@ -37,8 +37,8 @@ if (_data isEqualTo [""]) then {
     [format ["Welcome back %1. Your persistent locker, bank, cash and profile have been loaded.", name player, 5], "blue-grey"] call sog_client_misc_fnc_notify;
 
     for "_i" from 0 to (count _data - 1) step 2 do {
-        _key = _data select _i;
-        _value = _data select (_i + 1);
+        private _key = _data select _i;
+        private _value = _data select (_i + 1);
 
         if (_value isEqualType []) then {
             _value = _value select 0;
@@ -98,8 +98,8 @@ if (_data isEqualTo [""]) then {
                 player setVariable ["Position", _value];
                 player setPosASL _value;
 
-                _pAlt = ((getPosATLVisual player) select 2);
-                _pVelZ = ((velocity player) select 2);
+                private _pAlt = ((getPosATLVisual player) select 2);
+                private _pVelZ = ((velocity player) select 2);
                 if (_pAlt > 5 && _pVelZ < 0) then {
                     player setVelocity [0, 0, 0];
                     player setPosATL [((getPosATLVisual player) select 0), ((getPosATLVisual player) select 1), 1];
@@ -110,9 +110,7 @@ if (_data isEqualTo [""]) then {
     };
 
     if (needReload player == 1) then { reload player };
-
     player setVariable ["value_loadDone", true];
-    cutText ["", "PLAIN", 1];
 
     // [player getVariable ["SOG_Email", "unknown@spearnet.mil"], player, "sog_client_phone_fnc_addOfflineEmail", true] remoteExec ["db_fnc_listload", 2, false];
     // ["listrng", player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addOfflineEmail", "null", true] spawn dragonfly_db_fnc_addTask;

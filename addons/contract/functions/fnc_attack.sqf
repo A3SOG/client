@@ -35,16 +35,16 @@ private _targets = sog_client_contract_allTargets select { (_x getVariable ["ass
 // Mission Initialization.
 if (!isNil "_time") then {
 	// Mission Watchdog checks for example Timeout, killed Targets
-	_startTime = floor(time);
+	private _startTime = floor(time);
 	waitUntil {
 		sleep 1; // Use sleep on server side!
 
 		// Timeout check
-		_currTime = floor(time);
+		private _currTime = floor(time);
 		if (_currTime - _startTime >= _time) then { _result = 1; };
 
 		// Check if targets are killed
-		_targetsAlive = ({ !alive _x } count _targets);
+		private _targetsAlive = ({ !alive _x } count _targets);
 
 		// Trigger Conditions
 		(_result == 1) OR (_targetsAlive >= _limitSuccess)
@@ -55,7 +55,7 @@ if (!isNil "_time") then {
 		sleep 1; // Use sleep on server side!
 
 		// Check if targets are killed
-		_targetsAlive = ({ !alive _x } count _targets);
+		private _targetsAlive = ({ !alive _x } count _targets);
 
 		// Trigger Conditions
 		(_targetsAlive >= _limitSuccess)

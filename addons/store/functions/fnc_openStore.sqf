@@ -1,16 +1,15 @@
 #include "script_component.hpp"
 
 params ["_ct"];
-private ["_array", "_category", "_catListIndex", "_ctrl01", "_ctrl02", "_index", "_modListIndex", "_myDialog", "_paymentMethodsListIndex", "_title"];
 
 disableSerialization;
 createDialog "RscStore";
 
-_myDialog = findDisplay 202302;
-_ctrl01 = _myDialog displayCtrl 2023004;
-_ctrl02 = _myDialog displayCtrl 2023005;
-_ctrl03 = _myDialog displayCtrl 2023006;
-_array = _ct getVariable "isStore";
+private _myDialog = findDisplay 202302;
+private _ctrl01 = _myDialog displayCtrl 2023004;
+private _ctrl02 = _myDialog displayCtrl 2023005;
+private _ctrl03 = _myDialog displayCtrl 2023006;
+private _array = _ct getVariable "isStore";
 
 storeCategories = _array select 0;
 storeModset = _array select 1;
@@ -40,20 +39,20 @@ if ((getPlayerUID player) in companyGenerals) then {
 	storeCategories insert [-1, storeRestrictedCategories, true];
 
 	{
-		_paymentMethodsListIndex = _ctrl03 lbAdd _x;
+		private _paymentMethodsListIndex = _ctrl03 lbAdd _x;
 	} forEach storePaymentMethods;
 	_ctrl03 lbSetCurSel 0;
 };
 
 {
-	_modListIndex = _ctrl01 lbAdd _x;
+	private _modListIndex = _ctrl01 lbAdd _x;
 } forEach storeModset;
 _ctrl01 lbSetCurSel 2;
 
 {
-	_title = _x select 0;
-	_category = _x select 1;
-	_catListIndex = _ctrl02 lbAdd _title;
+	private _title = _x select 0;
+	private _category = _x select 1;
+	private _catListIndex = _ctrl02 lbAdd _title;
 	_ctrl02 lbSetData [_catListIndex, format ["%1", _category]];
 } forEach storeCategories;
 _ctrl02 lbSetCurSel 7;

@@ -1,14 +1,14 @@
 #include "script_component.hpp"
 
-_payMultiplyer = "MULTIPLYR" call BIS_fnc_getParamValue;
+private _payMultiplyer = "MULTIPLYR" call BIS_fnc_getParamValue;
 
 // _payMultiplyer = getNumber (missionConfigFile >> "Params" >> "MULTIPLYR");
-_plyscore = rating player;
-_multiplyer = _plyscore * _payMultiplyer;
+private _plyscore = rating player;
+private _multiplyer = _plyscore * _payMultiplyer;
 
-_bank = player getVariable ["Cash_Bank", 0];
+private _bank = player getVariable ["Cash_Bank", 0];
 
-_newBank = _bank + _multiplyer;
+private _newBank = _bank + _multiplyer;
 player setVariable ["Cash_Bank", _newBank, true];
 
 hintSilent format ["Payday! You were paid $%1.00 for services rendered. The money has been direct deposited to your account.", _multiplyer];

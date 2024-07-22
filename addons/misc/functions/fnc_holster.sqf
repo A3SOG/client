@@ -1,9 +1,7 @@
 #include "script_component.hpp"
 
-private ["_SOG_Holster", "_SOG_HolsterWeapon"];
-
-_SOG_Holster = player getVariable ["SOG_Holster", []];
-_SOG_HolsterWeapon = player getVariable ["SOG_HolsterWeapon", 0];
+private _SOG_Holster = player getVariable ["SOG_Holster", []];
+private _SOG_HolsterWeapon = player getVariable ["SOG_HolsterWeapon", 0];
 
 if (_SOG_HolsterWeapon == 1) then {
 	player addMagazine [(_SOG_Holster select 1), (_SOG_Holster select 3)];

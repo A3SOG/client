@@ -1,4 +1,4 @@
-_removeActions = {
+private _removeActions = {
     _unit = _this;
     { _unit removeAction _x } forEach allIDsToRemove;
 };

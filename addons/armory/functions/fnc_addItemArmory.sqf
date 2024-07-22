@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-params ["_class", "_type"];
+params [["_class", "", [""]], ["_type", 0, [0]]];
 
 private _index = (GVAR(arsenalUnlocks) select _type) pushBackUnique _class;
 

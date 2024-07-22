@@ -1,10 +1,10 @@
 // Spawn a dealer and buyer
-_dealer = "C_man_1" createUnit [(position player vectorAdd [random 100, random 100, 0]), (createGroup civilian), "dealer = this;", 0];
+private _dealer = "C_man_1" createUnit [(position player vectorAdd [random 100, random 100, 0]), (createGroup civilian), "dealer = this;", 0];
 
 // Wait a moment for the dealer to initialize
 sleep 1;
 
-_buyer = "C_man_1" createUnit [(position dealer vectorAdd [random 10, random 10, 0]), (createGroup civilian), "buyer = this;", 0];
+private _buyer = "C_man_1" createUnit [(position dealer vectorAdd [random 10, random 10, 0]), (createGroup civilian), "buyer = this;", 0];
 
 // Notify the player about the callout
 hint "A drug deal is taking place. Arrest the dealer and the buyer.";

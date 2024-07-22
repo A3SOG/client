@@ -18,10 +18,10 @@
  * Public: Yes
  */
 
-_cntType = _this select 0;
-_cntParams = _this select 1;
-_minRating = _this select 2;
-_thread = 0;
+private _cntType = _this select 0;
+private _cntParams = _this select 1;
+private _minRating = _this select 2;
+private _thread = 0;
 
 // Trigger before the contract starts or what ever you need
 // For example block accepting new contracts, lock shops, player save and so on
@@ -32,7 +32,7 @@ publicVariable "acceptContract";
 if (isNil "companyRating") then { companyRating = 0; };
 if (isNil "_minRating") then { _minRating = 0; };
 
-_companyRating = companyRating;
+private _companyRating = companyRating;
 if (_companyRating < _minRating) exitWith {
 	hint format ["The company rating of %1 does not meet or exceed the minimum required rating of %2.", _companyRating, _minRating];
 };

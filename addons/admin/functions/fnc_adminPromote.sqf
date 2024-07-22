@@ -1,22 +1,21 @@
 #include "script_component.hpp"
 
-params ["_condition"];
-private ["_data", "_data2", "_dialog", "_list", "_list2", "_rankValue", "_target", "_targetValue"];
+params [["_condition", "", [""]]];
 
-_dialog = findDisplay 202303;
-_list = _dialog displayCtrl 2023001;
-_list2 = _dialog displayCtrl 2023003;
-_targetValue = lbCurSel _list;
-_rankValue = lbCurSel _list2;
-_data = _list lbData _targetValue;
-_data2 = call compile format ["%1", (_list2 lbData _rankValue)];
+private _dialog = findDisplay 202303;
+private _list = _dialog displayCtrl 2023001;
+private _list2 = _dialog displayCtrl 2023003;
+private _targetValue = lbCurSel _list;
+private _rankValue = lbCurSel _list2;
+private _data = _list lbData _targetValue;
+private _data2 = call compile format ["%1", (_list2 lbData _rankValue)];
 
 if ((isNil {_data})) exitWith { hintSilent "You did not select a player!" };
 {
 	if (str (name (_x)) == str _data) then {
-		_target = _x;
+		private _target = _x;
 	};
-} count (playableUnits);
+} forEach playableUnits;
 
 switch (_condition) do {
 	case ("promote"): {

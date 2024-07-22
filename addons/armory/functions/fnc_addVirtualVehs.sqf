@@ -1,14 +1,13 @@
 #include "script_component.hpp"
 
-params [["_vehicles", []]];
-private ["_cars", "_armor", "_helis", "_planes", "_naval", "_static"];
+params [["_vehicles", [], [[]]]];
 
-_cars = GVAR(garageUnlocks) select 0;
-_armor = GVAR(garageUnlocks) select 1;
-_helis = GVAR(garageUnlocks) select 2;
-_planes = GVAR(garageUnlocks) select 3;
-_naval = GVAR(garageUnlocks) select 4;
-_static = GVAR(garageUnlocks) select 5;
+private _cars = GVAR(garageUnlocks) select 0;
+private _armor = GVAR(garageUnlocks) select 1;
+private _helis = GVAR(garageUnlocks) select 2;
+private _planes = GVAR(garageUnlocks) select 3;
+private _naval = GVAR(garageUnlocks) select 4;
+private _static = GVAR(garageUnlocks) select 5;
 
 {
 	switch true do {

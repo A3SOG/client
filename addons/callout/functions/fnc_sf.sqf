@@ -1,5 +1,5 @@
 // Spawn a shooter
-_unit = "O_Soldier_F" createUnit [((position player) vectorAdd [random 100, random 100, 0]), (createGroup east), "shooter = this;", 0];
+private _unit = "O_Soldier_F" createUnit [((position player) vectorAdd [random 100, random 100, 0]), (createGroup east), "shooter = this;", 0];
 
 // Wait a moment to allow the shooter to initialize
 sleep 1;

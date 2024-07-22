@@ -4,11 +4,9 @@
 #define PX_TH_SEP ","
 #define PX_DC_PL 2
 
-private ["_arr", "_count", "_str"];
-
-_count = 0;
-_arr = (_this toFixed PX_DC_PL) splitString ".";
-_str = PX_DC_SEP+(_arr select 1);
+private _count = 0;
+private _arr = (_this toFixed PX_DC_PL) splitString ".";
+private _str = PX_DC_SEP+(_arr select 1);
 _arr = toArray(_arr select 0);
 
 reverse _arr;

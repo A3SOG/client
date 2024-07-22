@@ -27,8 +27,8 @@ _player setVariable ["SOG_HolsterWeapon", true, true];
 _player setVariable ["PayGrade", "E1", true];
 _player addRating 500;
 
-_number = "0160" + (_uid select [count (toArray _uid) - 6, 6]);
-_email = _number + "@spearnet.mil";
+private _number = "0160" + (_uid select [count (toArray _uid) - 6, 6]);
+private _email = _number + "@spearnet.mil";
 
 _player setVariable ["SOG_Phone_Number", _number, true];
 _player setVariable ["SOG_Email", _email, true];
@@ -64,8 +64,8 @@ private _arsenalUnlocks = [["SOG_Phone", 0], ["SOG_Tablet", 0], ["ItemCompass", 
 private _garageUnlocks = [["B_Quadbike_01_F", 0]];
 
 {
-	_classname = _x select 0;
-	_typeOf = _x select 1;
+	private _classname = _x select 0;
+	private _typeOf = _x select 1;
 	[_classname, _typeOf] call sog_client_armory_fnc_addItemArmory;
 	uiSleep 0.2;
 } forEach _arsenalUnlocks;
@@ -73,8 +73,8 @@ private _garageUnlocks = [["B_Quadbike_01_F", 0]];
 uiSleep 1;
 
 {
-	_classname = _x select 0;
-	_typeOf = _x select 1;
+	private _classname = _x select 0;
+	private _typeOf = _x select 1;
 	[_classname, _typeOf] call sog_client_armory_fnc_addVehArmory;
 	uiSleep 0.2;
 } forEach _garageUnlocks;
@@ -88,8 +88,6 @@ uiSleep 1;
 uiSleep 1;
 [] call sog_client_init_fnc_playerDBSave;
 _player setVariable ["value_loadDone", true];
-
-cutText ["", "PLAIN", 1];
 
 uiSleep 1;
 // ["listrng", _player getVariable ["SOG_Email", "unknown@spearnet.mil"], "", -1, [], "sog_client_phone_fnc_addEmail", netId _player, true] spawn dragonfly_db_fnc_addTask;

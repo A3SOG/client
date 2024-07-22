@@ -1,14 +1,12 @@
-private ["_enemies"];
-
 // Create enemies at the target location
-_enemies = [];
+private _enemies = [];
 for "_i" from 0 to 5 do {
     _enemy = (createGroup east) createUnit ["O_Soldier_F", ((position player) vectorAdd [random 1000, random 1000, 0]), [], 0, "FORM"];
     _enemies pushBack _enemy;
 };
 
 // Add a marker on the map for the target location
-_marker = createMarker ["TargetLocation", _pos];
+private _marker = createMarker ["TargetLocation", _pos];
 _marker setMarkerShape "ICON";
 _marker setMarkerType "hd_dot";
 _marker setMarkerColor "ColorRed";

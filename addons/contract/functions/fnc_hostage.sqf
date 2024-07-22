@@ -31,12 +31,11 @@
 
 // Mission Parameters from Contract via Mission Handler
 params [["_taskID", ""], ["_limitFail", -1], ["_limitSuccess", -1], ["_extZone", ""], ["_companyFunds", 0], ["_ratingFail", 0], ["_ratingSuccess", 0], ["_type", [["_cbrn", false], ["_hostage", true]]], ["_endSuccess", false], ["_endFail", false], "_time", ["_cbrnZone", ""]];
-private ["_cbrn", "_hostage", "_nearPlayers", "_result"];
 
-_cbrn = (_this select 8) select 0;
-_hostage = (_this select 8) select 1;
-_nearPlayers = [];
-_result = 0;
+private _cbrn = (_this select 8) select 0;
+private _hostage = (_this select 8) select 1;
+private _nearPlayers = [];
+private _result = 0;
 
 // Get the hostages
 private _hostages = sog_client_contract_allHostages select { (_x getVariable ["assignedTask", ""]) == _taskID };
@@ -47,25 +46,25 @@ private _shooters = sog_client_contract_allShooters select { (_x getVariable ["a
 // Mission Initialization.
 if (!isNil "_time") then {
 	// Mission Watchdog checks for example Timeout, killed Hostages, killed Shooters
-	_startTime = floor(time);
+	private _startTime = floor(time);
 	waitUntil {
 		sleep 1; // Use sleep on server side!
 
 		// Check if hostages are killed
-		_hostagesAlive = ({ !alive _x } count _hostages);
+		private _hostagesAlive = ({ !alive _x } count _hostages);
 		if (_hostagesAlive >= _limitFail) then { _result = 1; };
 
 		// Check if hostages are in extraction zone
-		_hostagesInZone = ({ _x inArea _extZone } count _hostages);
+		private _hostagesInZone = ({ _x inArea _extZone } count _hostages);
 
 		// Check if hostages are captive
-		_hostagesCaptive = ({ !captive _x } count _hostages);
+		private _hostagesCaptive = ({ !captive _x } count _hostages);
 
 		// Check if shooters are killed
-		_shootersAlive = ({ alive _x } count _shooters);
+		private _shootersAlive = ({ alive _x } count _shooters);
 
 		// Timeout check
-		_currTime = floor(time);
+		private _currTime = floor(time);
 		if ((_hostagesCaptive < _limitSuccess) && (_currTime - _startTime >= _time)) then { _result = 1; };
 
 		// Trigger Conditions
@@ -77,14 +76,14 @@ if (!isNil "_time") then {
 		sleep 1; // Use sleep on server side!
 
 		// Check if hostages are killed
-		_hostagesAlive = ({ !alive _x } count _hostages);
+		private _hostagesAlive = ({ !alive _x } count _hostages);
 		if (_hostagesAlive >= _limitFail) then { _result = 1; };
 
 		// Check if hostages are in extraction zone
-		_hostagesInZone = ({ _x inArea _extZone } count _hostages);
+		private _hostagesInZone = ({ _x inArea _extZone } count _hostages);
 
 		// Check if shooters are killed
-		_shootersAlive = ({ alive _x } count _shooters);
+		private _shootersAlive = ({ alive _x } count _shooters);
 
 		// Trigger Conditions
 		(_result == 1) OR (_hostagesInZone >= _limitSuccess) OR ((!isNil "_shooters") && (_shootersAlive <= 0))

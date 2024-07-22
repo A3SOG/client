@@ -5,27 +5,26 @@ params ["_amount", "_type"];
 private ["_bank", "_cash", "_netWorth", "_newBank", "_newCash"];
 
 // Get the current bank balance and cash
-_bank = player getVariable ["Cash_Bank", 0];
-_cash = player getVariable ["Cash", 0];
+private _bank = player getVariable ["Cash_Bank", 0];
+private _cash = player getVariable ["Cash", 0];
 
 // Calculate the new bank balance and cash
-_newBank = _bank;
-_newCash = _cash;
+private _newBank = _bank;
+private _newCash = _cash;
 
 // Check the type
 switch (_type) do {
     case "Bank": {
         // Subtract the amount from the cash
-        _newCash = _cash - _amount;
+        private _newCash = _cash - _amount;
         // Add the amount to the bank
-        _newBank = _bank + _amount;
+        private _newBank = _bank + _amount;
     };
-    
     case "Cash": {
         // Subtract the amount from the bank
-        _newBank = _bank - _amount;
+        private _newBank = _bank - _amount;
         // Add the amount to the cash
-        _newCash = _cash + _amount;
+        private _newCash = _cash + _amount;
     };
 };
 
@@ -38,7 +37,7 @@ if (_newCash < 0) exitWith {
 };
 
 // Calculate the new net worth
-_netWorth = _newBank + _newCash;
+private _netWorth = _newBank + _newCash;
 
 // Set the new bank balance and cash
 player setVariable ["Cash_Bank", _newBank, true];

@@ -40,7 +40,7 @@ waitUntil {
 	sleep 1; // Use sleep on server side!
 
 	// Check if entities are killed
-	_entitiesAlive = ({ !alive _x } count _entities);
+	private _entitiesAlive = ({ !alive _x } count _entities);
 	if (_entitiesAlive >= _limitFail) then { _result = 1; };
 
 	// Trigger Conditions

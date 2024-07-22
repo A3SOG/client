@@ -1,11 +1,11 @@
 // Spawn a driver
-_driver = "C_man_1" createUnit [((position player) vectorAdd [random 100, random 100, 0]), (createGroup civilian), "rDriver = this;", 0];
+private _driver = "C_man_1" createUnit [((position player) vectorAdd [random 100, random 100, 0]), (createGroup civilian), "rDriver = this;", 0];
 
 // Wait a moment to allow the driver to initialize
 sleep 1;
 
 // Spawn a vehicle with the driver
-_targetVehicle = "C_Offroad_01_F" createVehicle (position rDriver);
+private _targetVehicle = "C_Offroad_01_F" createVehicle (position rDriver);
 
 // Wait a moment to allow the vehicle to initialize
 sleep 1;

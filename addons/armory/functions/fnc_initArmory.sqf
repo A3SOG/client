@@ -31,16 +31,17 @@ switch (SOG_PDB_Mode) do {
 	};
 	case 1: {
 		_handler = 0 spawn {
-			// _key = getPlayerUID player;
-			// [_key + "_Armory_Unlocks", player, "sog_client_armory_fnc_loadArmoryUnlocks", false] remoteExec ["db_fnc_load", 2, false];
+			waitUntil { value_serverDone };
+
 			// ["hget", "", "armory_unlocks", -1, [], "sog_client_armory_fnc_loadArmoryUnlocks", "null", false] spawn dragonfly_db_fnc_addTask;
 			["hgetid", getPlayerUID player, "armory_unlocks", -1, [], "sog_client_armory_fnc_loadArmoryUnlocks", netId player, false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
 
 			uiSleep 1;
 
-			// [_key + "_Garage_Unlocks", player, "sog_client_armory_fnc_loadGarageUnlocks", false] remoteExec ["db_fnc_load", 2, false];
 			// ["hget", "", "garage_unlocks", -1, [], "sog_client_armory_fnc_loadGarageUnlocks", "null", false] spawn dragonfly_db_fnc_addTask;
 			["hgetid", getPlayerUID player, "garage_unlocks", -1, [], "sog_client_armory_fnc_loadGarageUnlocks", netId player, false] remoteExec ["dragonfly_db_fnc_addTask", 2, false];
+
+			player setVariable ["value_armoryDone", true];
 		};
 	};
 	case 2: {

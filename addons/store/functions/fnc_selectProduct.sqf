@@ -1,11 +1,9 @@
 #include "script_component.hpp"
 
-private ["_dialog", "_itemDescription"];
+private _dialog = findDisplay 202302;
+private _itemDescription = _dialog displayCtrl 2023001;
 
-_dialog = findDisplay 202302;
-_itemDescription = _dialog displayCtrl 2023001;
-
-_i = _this select 1;
+private _i = _this select 1;
 focusedProductClass = ((currentProductList select _i) select 0);
 focusedProductPrice = ((currentProductList select _i) select 1);
 
