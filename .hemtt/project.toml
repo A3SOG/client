@@ -2,43 +2,7 @@ name = "SOG Client"
 prefix = "sog_client"
 author = "SOG"
 mainprefix = "z"
-[hemtt.launch.default]
-workshop = [
-    "450814997",
-    "463939057",
-    "497661914",
-    "497660133",
-    "549676314",
-    "843577117",
-    "843425103",
-    "843632231",
-    "843593391",
-    "894678801",
-    "3023395342",
-    "3018767334",
-    "2172022102",
-    "2912186689",
-    "1792964841",
-]
-presets = [
-    "main",
-]
-optionals = [
-    "@sog_client",
-    "@sog_mod",
-    "@sog_gear",
-    "@sog_objects",
-    "@sog_factions",
-]
-mission = "sog_tablet.VR"
-parameters = [
-    "-skipIntro",
-    "-noSplash",
-    "-showScriptErrors",
-    "-debug",
-    "-filePatching",
-    "-world=empty",
-]
+
 [files]
 include = [
     "sog_client_version.json",

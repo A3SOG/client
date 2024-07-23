@@ -14,10 +14,10 @@ if ((isNil {_data})) exitWith { hintSilent "You did not select a player!" };
 	};
 } count (playableUnits);
 
-hintSilent format ["Operator Selected. You have selected %1", _target];
+hintSilent format ["Player Selected. You have selected %1", _target];
 
 if (isNil "_target") then {
-	hintSilent "Please Select an Active Operator First!"
+	hintSilent "Please Select an Active Player First!"
 } else {
 	private _textMessage = ctrlText _textBox;
 	[_target, _textMessage] remoteExec ["sog_server_misc_fnc_textMessage", 2];
